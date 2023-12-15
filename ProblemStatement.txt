@@ -1,0 +1,34 @@
+Maintaining History of commands in xv6
+
+
+History of past shell commands allows terminal users to evaluate multiple requests very fast
+without writing the entire command.
+In this part of the assignment you will have to implement the history feature and the ability
+to easily update the console to fit the needed history. In modern operating systems the
+history is implemented in the shell.
+To allow for a simple implementation you will implement history in kernel. Your
+implementation should support a maximum of 16 commands.
+To do so you can add: #define MAX_HISTORY 16 to your code.
+Once history is implemented we need a way to access the history. You will implement two
+mechanisms to do so:
+1) The ↑ / ↓ keys will need to retrieve the next / last item in the history respectively. The
+item retrieved
+should now appear in the console.
+2) Add a history system call:
+int history(char * buffer, int historyId)
+
+Input:
+char * buffer - a pointer to a buffer that will hold the history command,
+
+Assume max buffer size 128.
+historyId - The history line requested, values 0 to 15
+Output:
+0 History copied to the buffer properly ‐
+‐ ‐ 1 No history for the given id
+‐ ‐ 2 historyId illegal
+Once this is implemented add a “ history “ command to the shell user program (see sh.c) so
+that it upon writing the command a full list of the history should be printed to screen like in
+common.
+● A good place to start for both is the console.c file.
+● Notice that this features will only work on the QEMU console and not on the terminal.
+Running QEMU in nox mode
